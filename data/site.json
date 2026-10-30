@@ -96,8 +96,8 @@
               "logo": {
                 "src": "/images/logo.webp",
                 "alt": "Haulix — Logistics & Transportation",
-                "width": 1972,
-                "height": 404
+                "width": 600,
+                "height": 123
               }
             },
             "seo": {
@@ -736,8 +736,8 @@
             ],
             "logo": {
               "src": "/images/logo-white.webp",
-              "width": 1972,
-              "height": 404
+              "width": 600,
+              "height": 123
             }
           }
         }

@@ -1,26 +1,38 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+@theme {
+  /* Brand colours, taken from the Haulix logo and website. These are only defaults: site.json (theme.colors) overrides them in app/layout.tsx. */
+  --color-brand: #851210; /* logo red + buttons */
+  --color-brand-dark: #6a0e0c; /* hover state */
+  --color-brand-light: #e0574e; /* red accents on dark sections */
+  --color-ink: #052e36; /* logo wordmark, headings */
+  --color-deep: #032a33; /* dark sections */
+  --color-night: #021f26; /* footer, darkest panels */
+  --color-panel: #0a3a44; /* cards on dark sections */
+  --color-body: #3c4a52;
+  --color-slate: #5d6870;
+  --color-subtle: #76828a;
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+  /* Cool neutrals (teal-tinted) */
+  --color-page: #ffffff;
+  --color-cloud: #f6f6f7;
+  --color-mist: #f3f6f8;
+  --color-line: #e3e7ea;
+  --color-field: #fafbfc;
+  /* Shown on both sides of the page when the screen is wider than 1920px (or the browser is zoomed out). */
+  --color-backdrop: #f2f4f5;
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+  /* Endless service ticker below the hero (the list is rendered twice, so -50% lands on the same picture) */
+  --animate-marquee: marquee 40s linear infinite;
+  @keyframes marquee {
+    to {
+      translate: -50% 0;
+    }
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@theme inline {
+  /* Fonts from site.json (theme.fonts) via app/fonts.generated.ts; the second part is the fallback. */
+  --font-display: var(--font-jakarta-face, Arial, sans-serif);
+  --font-sans: var(--font-poppins-face, Arial, sans-serif);
 }

@@ -105,32 +105,34 @@ export default function Navbar({ data = site.navbar }: SectionProps<HaulixHeader
       <nav
         id="mobile-menu"
         aria-label={labels.mobileNav}
-        // when open it is a card that fills the screen below the header pill, so the page behind it does not show through
-        className={`mx-auto mt-2 max-w-7xl overflow-y-auto rounded-3xl bg-page shadow-[0_20px_50px_-20px_rgba(5,46,54,0.5)] transition-[height,opacity] duration-500 lg:hidden ${
-          open ? "h-[calc(100dvh-6.5rem)] opacity-100" : "pointer-events-none h-0 opacity-0"
+        // when open it is a card only as tall as its links, and scrolls if they do not fit on the screen
+        className={`mx-auto mt-2 grid max-h-[calc(100dvh-6.5rem)] max-w-7xl overflow-hidden rounded-3xl bg-page shadow-[0_20px_50px_-20px_rgba(5,46,54,0.5)] transition-[grid-template-rows,opacity] duration-500 lg:hidden ${
+          open ? "grid-rows-[1fr] opacity-100" : "pointer-events-none grid-rows-[0fr] opacity-0"
         }`}
       >
-        <ul className="flex flex-col px-5 py-4 sm:px-6">
-          {menuLinks.map((link) => (
-            <li key={link.href}>
-              <a
-                href={link.href}
-                onClick={() => setOpen(false)}
-                className={`flex items-center justify-between border-b border-line py-3.5 font-display font-semibold transition-colors hover:text-brand ${
-                  sectionId(link.href) === active ? "text-brand" : "text-ink/85"
-                }`}
-              >
-                {link.label}
-                <Icon name="chevron-right" className="size-4 text-brand" strokeWidth={2.2} />
+        <div className="min-h-0 overflow-y-auto">
+          <ul className="flex flex-col px-5 py-4 sm:px-6">
+            {menuLinks.map((link) => (
+              <li key={link.href}>
+                <a
+                  href={link.href}
+                  onClick={() => setOpen(false)}
+                  className={`flex items-center justify-between border-b border-line py-3.5 font-display font-semibold transition-colors hover:text-brand ${
+                    sectionId(link.href) === active ? "text-brand" : "text-ink/85"
+                  }`}
+                >
+                  {link.label}
+                  <Icon name="chevron-right" className="size-4 text-brand" strokeWidth={2.2} />
+                </a>
+              </li>
+            ))}
+            <li className="pt-5 sm:hidden">
+              <a href={cta.href} onClick={() => setOpen(false)} className={`${ctaClass} w-full px-7 py-3.5`}>
+                {cta.label}
               </a>
             </li>
-          ))}
-          <li className="pt-5 sm:hidden">
-            <a href={cta.href} onClick={() => setOpen(false)} className={`${ctaClass} w-full px-7 py-3.5`}>
-              {cta.label}
-            </a>
-          </li>
-        </ul>
+          </ul>
+        </div>
       </nav>
     </header>
   );
